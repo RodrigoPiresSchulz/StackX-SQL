@@ -1,0 +1,45 @@
+1) Com base na tabela PACIENTES, escreva o significado de cada um dos seguintes comandos: NUMERO CPF NOME IDADE
+Select * From Pacientes ---- seleciona todos os campos/colunas da tabela pacientes
+Select * From Pacientes Where idade > 18 --- seleciona todos os campos/colunas da tabela pacientes que tenham idade maior que 18
+Select CPF, nome From Pacientes --- seleciona os campos cpf e nome da tabela pacientes
+Select CPF, nome from Pacientes where nome like ´M%´ --- seleciona os campos cpf e nome da tabela pacientes no qual o nome começa pelo caractere M
+
+2) Com base na tabela MEDICOS, escreva a query: NUMERO CPF NOME CIDADE IDADE ESPECIALIDADE
+Buscar os dados dos médicos ortopedistas, traumatologistas e cardiologistas de Florianópolis
+select NUMERO, CPF, NOME, CIDADE, IDADE, ESPECIALIDADE from MEDICOS where ESPECIALIDADE in ( 'ortopedista', 'traumatologista', 'cardiologista') and CIDADE = 'Florianópolis';
+
+3) Com base na tabela abaixo (EMPREGADO), escreva o significado de cada um dos seguintes comandos: NUM NOME DEPTO IDADE SALARIO
+a) Select * From Empregado; --- seleciona todos os campos/colunas da tabela empregado
+b) Select Num, Nome From Empregado; -- seleciona Num e Nome da tabela empregadp
+c) Select Depto From Empregado; (Cuidado: Aparecerá dados duplicados!) -- apresenta o nome de todos departamentos da tabela empregado, mesmo que sejam repetidos
+d) Select Distinct Depto From Empregado; -- apresenta o nome dos departamentos da tabela empregado sem duplicidadade
+e) Select * From Empregado Where Salario > 20000 and Salario < 30000; -- seleciona todos os campos/colunas da tabela empregado onde a coluna salario é maior que 20000 e menor que 30000
+f) Select * From Empregado Where Salario Between 20000 and 30000; -- seleciona todos os campos/colunas da tabela empregado onde a coluna salario fica entre 20000 e 30000 - inclusive
+g) Select * From Empregado Where (Salario Between 20000 and 30000) or Num = 1; -- seleciona todos os campos/colunas da tabela empregado onde a coluna salario fica entre 20000 e 30000 - inclusive ou o numero da chave é igual a 1
+h) Select * From Empregado Order By Nome Desc; -- seleciona todos os campos/colunas da tabela empregado ordenando os nomes por ordem alfabética decrescente
+i) Select * From Empregado Where Salario Between 20000 and 30000 Order By Salario; -- seleciona todos os campos/colunas da tabela empregado onde a coluna salario fica entre 20000 e 30000 - inclusive, ordenando na ordem crescente de salario
+j) Select * From Empregado Where Nome Like 'D%'; -- seleciona todos os campos/colunas da tabela empregado onde a coluna nome inicia pelo caractere D
+k) Select * From Empregado Where Num > 3; -- seleciona todos os campos/colunas da tabela empregado onde a coluna num é maior que 3
+l) Select * From empregado Where Num = 3 or Num = 5; -- seleciona todos os campos/colunas da tabela empregado onde a coluna num e igual a 3 ou igual a 5
+m) Select * From Empregado Where Num IN (3,5); -- seleciona todos os campos/colunas da tabela empregado onde a coluna num e igual a 3 ou igual a 5
+
+4)Realizar as seguintes consultas no BD. Utilize as tabelas Pacientes, Medicos ou Empregado:
+a) Buscar o nome e o CPF dos médicos com especialidade diferente de traumatologia - select nome, cpf from medicos where especialidade <> 'Traumatologia';
+b) Buscar o nome e a cidade dos médicos que não residem em Florianópolis - select nome, cidade from medicos where cidade not in ('Florianopolis');
+c) De quais cidades vêm os médicos - select distinct cidade from medicos;
+d) Buscar o CPF, o nome e a especialidade dos médicos - select cpf, nome, especialidade from medicos;
+e) Buscar o nome dos empregados que terminam com a letra “a” - select nome from funcionarios where nome like '%a';
+f) Buscar o nome e idade dos empregados que não possuam a sequência “00000” em seus CPFs - select nome, idade, cpf from empregado where cpf not like ('%00000%');
+g) Buscar o nome e a especialidade dos médicos cuja segunda e a última letra de seus nomes sejam a letra “o” - select nome, especialidade from medicos where nome like ('_o%') and ('%o');
+h) Buscar os nomes e as idades dos empregados com mais de 25 anos - select nome, idade from empregado where idade > 25;
+
+
+5)Realizar as seguintes consultas no BD. Utilize a tabela FUNCIONARIOS. NUMERO NOME SALARIO ESTADO ANO_ADMISSAO
+a) Criar uma consulta que exiba nome, salário e o estado dos funcionários em ordem crescente pelo nome - select nome, salario, estado from funcionarios order by nome;
+b) Criar uma consulta que exiba os funcionários em que qualquer parte do nome possua a string almeida - select nome from funcionarios where nome like ('%almeida%');
+c) Criar uma consulta que exiba os funcionários que moram na BA ou em SP - select * from funcionarios where estado in ('BA', 'SP');
+d) Exibir salário de funcionários entre 800 e 1800 (inclusive) - select salario from funcionarios where salario between 800 and 1800;
+e) Exibir todos os funcionários em que o nome se inicia com el - select nome from funcionarios where nome like ('el%');
+f) Exibir todos os funcionários com exceção daqueles que moram em SP - select * from funcionarios where estado not in ('SP');
+g) Exibir todos os funcionários com salario = 0 - select * from funcionarios where salario = 0;
+h) Exibir todos os funcionários que foram admitidos entre 1999 e 2009 (inclusive) - select * from funcionarios where ano_admissao between 1999 and 2009;
